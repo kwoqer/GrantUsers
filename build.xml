@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<project default="dist" name="ocons">
+	<description>Build ocons project</description>
+	
+	<property name="srcDir" location=""/>
+	<property name="buildDir" location="bin"/>
+	<property name="distDir" location="D:/Work/dist/GrantUsers"/>
+	<property name="version" value="1.0"/>
+	<property name="libDir" value="lib"/>
+	
+
+	<target name="init">
+		<tstamp/>
+		<mkdir dir="${buildDir}"/>
+		<mkdir dir="${distDir}"/>						
+	</target>
+
+	<target name="compile" depends="init">
+		<javac srcdir="${srcDir}" destdir="${buildDir}"/>
+	</target>	
+		
+	<target name="dist" depends="compile">				
+		<jar destfile="${distDir}/GrantUsers-${version}-${DSTAMP}.jar" basedir="${buildDir}">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Main-Class" value="start.Start"/>
+				<attribute name="Class-Path" value="${libDir}/ojdbc14.jar ${libDir}/jacob.jar"/>
+			</manifest>
+		</jar>
+	</target>
+</project>
